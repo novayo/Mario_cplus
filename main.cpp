@@ -1,19 +1,18 @@
-#include <stdio.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_timer.h>
+#include <stdio.h>
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     printf("Initializing SDL...\n");
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
         printf("error initializing SDL: %s\n", SDL_GetError());
         return 1;
     }
-    
+
     printf("Creating window...\n");
     SDL_Window* win = SDL_CreateWindow("GAME", // creates a window
-                                       SDL_WINDOWPOS_CENTERED,
-                                       SDL_WINDOWPOS_CENTERED,
-                                       800, 600, SDL_WINDOW_SHOWN);
+                                       SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600,
+                                       SDL_WINDOW_SHOWN);
     if (!win) {
         printf("error creating window: %s\n", SDL_GetError());
         SDL_Quit();
