@@ -5,10 +5,10 @@ CC = clang
 CFLAGS = -I/Library/Frameworks/SDL2.framework/Headers -F/Library/Frameworks -framework SDL2 -rpath /Library/Frameworks
 
 # target file
-TARGET = main
+TARGET = main.out
 
 # source files
-SRC = main.cpp
+SRC = main.cc
 
 all: format $(TARGET)
 
