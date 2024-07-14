@@ -17,3 +17,13 @@
 > Installation:
 > 1. Move SDL2.framework to /Library/Frameworks/
 > 2. You may need allow it in the "security and privacy" after running the cpp file in the first time.
+
+* SDL2_mixer
+> Version: 2.8.0\
+> Download from [Link](https://www.libsdl.org/projects/SDL_mixer/release/)
+
+> Installation:
+> 1. Download SDL2_mixer-2.8.0.dmg
+> 2. Move SDL2_mixer.framework to /Library/Frameworks/
+> 3. You may need allow it in the "security and privacy" after running the cpp file in the first time.
+

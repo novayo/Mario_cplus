@@ -4,7 +4,9 @@ ROOT := $(realpath ${CURDIR}/..)
 CC = g++
 
 # define any compile-time flags
-CFLAGS = -I${ROOT} -I/Library/Frameworks/SDL2.framework/Headers -F/Library/Frameworks -framework SDL2 -rpath /Library/Frameworks
+CFLAGS = -I${ROOT}
+CFLAGS += -I/Library/Frameworks/SDL2.framework/Headers -F/Library/Frameworks -framework SDL2 -rpath /Library/Frameworks
+CFLAGS += -I/Library/Frameworks/SDL2_mixer.framework/Headers -framework SDL2_mixer
 
 # Find all source files
 #   Exclude:
