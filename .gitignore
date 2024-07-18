@@ -36,3 +36,6 @@
 
 # Uneeded Photos
 tools/*.png
+
+# Mac
+.DS_Store
