@@ -7,6 +7,7 @@ CC = g++
 CFLAGS = -I${ROOT}
 CFLAGS += -I/Library/Frameworks/SDL2.framework/Headers -F/Library/Frameworks -framework SDL2 -rpath /Library/Frameworks
 CFLAGS += -I/Library/Frameworks/SDL2_mixer.framework/Headers -framework SDL2_mixer
+CFLAGS += -std=c++17
 
 # Find all source files
 #   Exclude:
