@@ -125,7 +125,7 @@ int main(int argc, char* argv[]) {
     }
 
     // Initialize camera
-    Camera camera(400, 300);
+    Camera camera(800, 600);
 
     // Start the game
     printf("Entering main loop...\n");
