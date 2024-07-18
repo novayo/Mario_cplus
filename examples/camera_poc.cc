@@ -64,6 +64,7 @@ class Block {
     void move_right() { this->rect.x += SIZE; }
 
     int get_x() { return this->rect.x; }
+    int get_y() { return this->rect.y; }
 
     void draw(const Camera& camera) {
         SDL_Rect relativeRect = camera.apply(this->rect);
@@ -124,7 +125,7 @@ int main(int argc, char* argv[]) {
     }
 
     // Initialize camera
-    Camera camera(800, 600);
+    Camera camera(400, 300);
 
     // Start the game
     printf("Entering main loop...\n");
