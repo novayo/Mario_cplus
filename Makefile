@@ -3,6 +3,7 @@ CC = g++
 
 # define any compile-time flags
 CFLAGS = -I${CURDIR} -I/Library/Frameworks/SDL2.framework/Headers -F/Library/Frameworks -framework SDL2 -rpath /Library/Frameworks
+CFLAGS += -std=c++17
 
 # target file
 TARGET = main.out
