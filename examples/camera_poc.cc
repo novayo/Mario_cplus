@@ -38,7 +38,7 @@ class Camera {
     }
 
     // apply the camera to a rect
-    SDL_Rect apply(SDL_Rect rect) const {
+    SDL_Rect apply(SDL_Rect& rect) const {
         SDL_Rect relativeRect = rect;
         relativeRect.x -= viewport.x;
         relativeRect.y -= viewport.y;
