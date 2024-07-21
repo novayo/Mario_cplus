@@ -1,9 +1,9 @@
-#include <SDL2_mixer/SDL_mixer.h>
 #include <stdio.h>
 
 #include <vector>
 
 #include "core/include/sdl_handler.h"
+#include "core/include/sound_handler.h"
 
 const int SIZE = 40;
 const int NUM_ROW = 15; // 800*600 => 600 / SIZE = 15
@@ -41,13 +41,8 @@ class Block {
 
 int main(int argc, char* argv[]) {
     // Init music player
-    Mix_Init(0);
-    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024);
-    Mix_Music* background_music = Mix_LoadMUS("../res/sounds/overworld.wav");
-    Mix_PlayMusic(background_music, -1);
-
-    // Load sound effect
-    Mix_Chunk* sound_effect = Mix_LoadWAV("../res/sounds/coin.wav");
+    sound_handler::GetInstance().initialize();
+    sound_handler::GetInstance().play_bgm("overworld.wav");
 
     // Init sdl_handler
     sdl_handler::GetInstance().initialize();
@@ -103,7 +98,7 @@ int main(int argc, char* argv[]) {
                             break;
                         case SDLK_SPACE:
                             // Play sound effect
-                            Mix_PlayChannel(-1, sound_effect, 0);
+                            sound_handler::GetInstance().play_sound("coin.wav");
                             break;
                         case SDLK_UP:
                             printf("Input: Up\n");
@@ -130,10 +125,7 @@ int main(int argc, char* argv[]) {
         sdl_handler::GetInstance().update_screen();
     }
 
-    // De-init music player
-    Mix_FreeChunk(sound_effect);
-    Mix_FreeMusic(background_music);
-    Mix_Quit();
+    sound_handler::GetInstance().teardown();
     sdl_handler::GetInstance().teardown();
 
     printf("Done.\n");
