@@ -17,7 +17,7 @@ public:
 private:
     Mix_Music* background_music_;
     Mix_Chunk* sound_effect_;
-    std::string root_path_ = "../res/sounds";
+    std::string root_path_ = "../res/sounds/";
 };
 
 SoundHandler& GetInstance();
