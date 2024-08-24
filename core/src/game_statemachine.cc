@@ -1,3 +1,4 @@
+#include "core/include/constants.h"
 #include "core/include/game_statemachine.h"
 #include "core/include/sdl_handler.h"
 #include "core/include/sprite_handler.h"
@@ -42,6 +43,14 @@ void GameSM::Login::process() {
     printf("\t ===== Enter Space ===== \n");
     printf("\t [Testing] Load 1-1\n");
     sprite_handler::GetInstance().draw_background();
+
+    // [TEST] Show text
+    for (int i=0; i<30; i++) {
+        sprite_handler::GetInstance().set_text(FONT_ARRAY[i], 32 * i, 32);
+    }
+    for (int i=30; i<std::size(FONT_ARRAY); i++) {
+        sprite_handler::GetInstance().set_text(FONT_ARRAY[i], 32 * (i-30), 64);
+    }
     if (getInput(0)) { // TODO: 0 == space
         transitionTo(&mLoadingState_);
     }

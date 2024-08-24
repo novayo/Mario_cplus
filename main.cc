@@ -9,6 +9,8 @@ int main(int argc, char* argv[]) {
     sdl_handler::GetInstance().initialize();
     SDL_Renderer* surface = sdl_handler::GetInstance().get_surface();
 
+    sprite_handler::GetInstance().initialize();
+
     printf("Entering main loop...\n");
     int close = 0;
     SDL_Event event;
