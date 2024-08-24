@@ -27,3 +27,12 @@
 > 2. Move SDL2_mixer.framework to /Library/Frameworks/
 > 3. You may need allow it in the "security and privacy" after running the cpp file in the first time.
 
+* SDL_image
+> Version: 2.8.0\
+> Download from [Link](https://www.libsdl.org/projects/SDL_image/release/)
+
+> Installation:
+> 1. Download SDL2_image-2.8.0.dmg
+> 2. Move SDL2_imgae.framework to /Library/Frameworks/
+> 3. You may need allow it in the "security and privacy" after running the cpp file in the first time.
+
