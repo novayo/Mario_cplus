@@ -16,6 +16,12 @@ int main(int argc, char* argv[]) {
     GameSM game_sm = GameSM();
     game_sm.start();
     while (!close) {
+        // 60 FPS
+        if (SDL_GetTicks() - start_time < 1000/60.0) {
+            continue;
+        }
+        start_time = SDL_GetTicks();
+
         while (SDL_PollEvent(&event)) {
             switch (event.type) {
                 case SDL_QUIT:
