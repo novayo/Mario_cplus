@@ -11,10 +11,12 @@ public:
     SDL_Renderer* get_surface();
     void reset_screen();
     void update_screen();
+    void set_background_color(uint8_t r, uint8_t g, uint8_t b);
 
 private:
     SDL_Renderer* surface_;
     SDL_Window* window_;
+    uint8_t bg_color_[3] = {0, 0, 0};  // Default black
 };
 
 SDLHandler& GetInstance();
