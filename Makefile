@@ -4,6 +4,7 @@ CC = g++
 # define any compile-time flags
 CFLAGS = -I${CURDIR} 
 CFLAGS += -I/Library/Frameworks/SDL2.framework/Headers -F/Library/Frameworks -framework SDL2 -rpath /Library/Frameworks
+CFLAGS += -I/Library/Frameworks/SDL2_image.framework/Headers -framework SDL2_image
 CFLAGS += -I/Library/Frameworks/SDL2_mixer.framework/Headers -framework SDL2_mixer
 CFLAGS += -std=c++17
 

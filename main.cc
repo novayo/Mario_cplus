@@ -3,6 +3,7 @@
 
 #include "core/include/game_statemachine.h"
 #include "core/include/sdl_handler.h"
+#include "core/include/sprite_handler.h"
 
 int main(int argc, char* argv[]) {
     sdl_handler::GetInstance().initialize();
@@ -41,13 +42,15 @@ int main(int argc, char* argv[]) {
             }
         }
 
+        sdl_handler::GetInstance().reset_screen();
+
         game_sm.process();
 
-        sdl_handler::GetInstance().reset_screen();
         sdl_handler::GetInstance().update_screen();
     }
 
     sdl_handler::GetInstance().teardown();
+    sprite_handler::GetInstance().teardown();
 
     printf("Done.\n");
     return 0;

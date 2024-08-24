@@ -1,6 +1,6 @@
 #include "core/include/game_statemachine.h"
-
 #include "core/include/sdl_handler.h"
+#include "core/include/sprite_handler.h"
 
 static GameSM::Init mInitState_;
 static GameSM::Login mLoginState_;
@@ -34,11 +34,14 @@ void GameSM::Init::exit() { printf("GameState: Exit %s\n", getName()); }
 void GameSM::Login::enter() {
     printf("GameState: Enter %s\n", getName());
     printf("\t Showing Login Scene\n");
+    sprite_handler::GetInstance().load_level(11);
 }
 
 void GameSM::Login::process() {
     printf("GameState: Process %s\n", getName());
     printf("\t ===== Enter Space ===== \n");
+    printf("\t [Testing] Load 1-1\n");
+    sprite_handler::GetInstance().draw_background();
     if (getInput(0)) { // TODO: 0 == space
         transitionTo(&mLoadingState_);
     }
