@@ -1,7 +1,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 
-#include "core/include/constants.h"
 #include "core/include/sdl_handler.h"
 #include "core/include/sprite_handler.h"
 #include "level/level_1_1.h"
@@ -11,6 +10,33 @@ using namespace sprite_handler;
 sprite_handler::SpriteHandler& sprite_handler::GetInstance() {
     static SpriteHandler sprite_handler_;
     return sprite_handler_;
+}
+
+void SpriteHandler::initialize() {
+    font_texture_ = IMG_LoadTexture(surface_, (root_path_+"font.png").c_str());
+    for (int i=0; i<std::size(FONT_ARRAY); i++) {
+        fonts_attribute_[FONT_ARRAY[i]] = SDL_Rect{
+            .x = FONT_IMAGE_SIZE*i,
+            .y = 0,
+            .w = FONT_IMAGE_SIZE,
+            .h = FONT_IMAGE_SIZE,
+        };
+    }
+}
+
+void SpriteHandler::set_text(std::string text, int x, int y, int font_size, int r, int g, int b) {
+    if (fonts_attribute_.find(text) == fonts_attribute_.end()) {
+        printf("[WARN] Text is not supported: %s", text.c_str());
+        return;
+    }
+    SDL_Rect pos = SDL_Rect{
+        .x = x,
+        .y = y,
+        .w = font_size,
+        .h = font_size,
+    };
+    SDL_SetTextureColorMod(font_texture_, r, g, b);
+    SDL_RenderCopy(surface_, font_texture_, &fonts_attribute_[text], &pos);
 }
 
 void SpriteHandler::load_level(int num_level) {
@@ -46,6 +72,9 @@ void SpriteHandler::teardown() {
         SDL_DestroyTexture(it.second);
     }
     imgs_texture_.clear();
+
+    SDL_DestroyTexture(font_texture_);
+    fonts_attribute_.clear();
 
     // Release pointers.
     delete current_level_;
