@@ -50,9 +50,15 @@ void sdl_handler::SDLHandler::teardown() {
     SDL_Quit();
 }
 
+void sdl_handler::SDLHandler::set_background_color(uint8_t r, uint8_t g, uint8_t b) {
+    bg_color_[0] = r;
+    bg_color_[1] = g;
+    bg_color_[2] = b;
+}
+
 void sdl_handler::SDLHandler::reset_screen() {
     // Set screen to black
-    SDL_SetRenderDrawColor(surface_, 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(surface_, bg_color_[0], bg_color_[1], bg_color_[2], 255);
     SDL_RenderClear(surface_);
 }
 
