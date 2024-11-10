@@ -30,4 +30,6 @@ format:
 	clang-format -i $(SRC)
 
 clean:
+	find . -name "*.out" -delete
+	find . -name ".DS_Store" -delete
 	rm -f $(TARGET)
