@@ -5,6 +5,7 @@
 #include <mutex>
 #include <thread>
 
+#include "core/include/constants.h"
 #include "core/include/game_statemachine.h"
 #include "core/include/sdl_handler.h"
 #include "core/include/sprite_handler.h"
@@ -53,12 +54,8 @@ int main(int argc, char* argv[]) {
                     close = 1;
                     break;
                 case SDL_KEYDOWN:
-                    if (event.key.keysym.sym == SDLK_SPACE) {
-                        game_sm.key_input.insert(0); // TODO: should use Enum
-                    } else if (event.key.keysym.sym == SDLK_a) {
-                        game_sm.key_input.insert(1); // TODO: should use Enum
-                    } else if (event.key.keysym.sym == SDLK_b) {
-                        game_sm.key_input.insert(2); // TODO: should use Enum
+                    if (INPUT_MAP.find(event.key.keysym.sym) != INPUT_MAP.end()) {
+                        game_sm.key_input.insert(INPUT_MAP[event.key.keysym.sym]);
                     }
                     break;
                 default:
