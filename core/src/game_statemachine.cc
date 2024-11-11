@@ -12,6 +12,9 @@ static GameSM::GameWin mGameWinState_;
 static GameSM::GameLose mGameLoseState_;
 static GameSM::GameOver mGameOverState_;
 
+static int mario_x = 10*BLOCK_SIZE;
+static int mario_y = 7*BLOCK_SIZE;
+
 GameSM::GameSM() {
     mInitState_ = GameSM::Init(this);
     mLoginState_ = GameSM::Login(this);
@@ -56,6 +59,49 @@ void GameSM::Login::process() {
     if (getInput(MARIO_CONTROL::JUMP)) {
         transitionTo(&mLoadingState_);
     }
+
+    int x = 10 * BLOCK_SIZE;
+    int y = 5 * BLOCK_SIZE;
+    int thick = 1;
+    int length = 10;
+    int move_speed = 20;
+    SDL_Rect invisible_up = SDL_Rect{.y = y, .x = x, .w = BLOCK_SIZE, .h = thick,};
+    SDL_Rect invisible_down = SDL_Rect{.y = y+BLOCK_SIZE - thick, .x = x, .w = BLOCK_SIZE, .h = thick,};
+    SDL_Rect invisible_right = SDL_Rect{.y = y, .x = x+BLOCK_SIZE - thick, .w = thick, .h = BLOCK_SIZE,};
+    SDL_Rect invisible_left = SDL_Rect{.y = y, .x = x, .w = thick, .h = BLOCK_SIZE,};
+    SDL_Rect block = SDL_Rect{.y = y, .x = x, .w = BLOCK_SIZE, .h = BLOCK_SIZE,};
+
+    if (getInput(MARIO_CONTROL::UP)) {
+        mario_y -= move_speed;
+    } else if (getInput(MARIO_CONTROL::RIGHT)) {
+        mario_x += move_speed;
+    } else if (getInput(MARIO_CONTROL::DOWN)) {
+        mario_y += move_speed;
+    } else if (getInput(MARIO_CONTROL::LEFT)) {
+        mario_x -= move_speed;
+    } 
+
+    SDL_Rect mario = SDL_Rect{.y = mario_y, .x = mario_x, .w = BLOCK_SIZE, .h = BLOCK_SIZE,};
+
+    if (SDL_HasIntersection(&mario, &invisible_up)) {
+        printf("Hit Top!\n");
+    }
+    if (SDL_HasIntersection(&mario, &invisible_down)) {
+        printf("Hit Down!\n");
+    }
+    if (SDL_HasIntersection(&mario, &invisible_right)) {
+        printf("Hit Right!\n");
+    }
+    if (SDL_HasIntersection(&mario, &invisible_left)) {
+        printf("Hit Left!\n");
+    }
+
+    sprite_handler::GetInstance().render_a_block("brickred.png", invisible_up);
+    sprite_handler::GetInstance().render_a_block("brickred.png", invisible_down);
+    sprite_handler::GetInstance().render_a_block("brickred.png", invisible_right);
+    sprite_handler::GetInstance().render_a_block("brickred.png", invisible_left);
+    // sprite_handler::GetInstance().render_a_block("brickred.png", block);
+    sprite_handler::GetInstance().render_a_block("brickred.png", mario);
 }
 
 void GameSM::Login::exit() { printf("GameState: Exit %s\n", getName()); }

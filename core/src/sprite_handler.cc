@@ -55,15 +55,25 @@ void SpriteHandler::load_level(int num_level) {
     set_background_color_();
 }
 
+void SpriteHandler::draw_a_block(std::string img_name, int x, int y, int w, int h) {
+    SDL_Rect pos = SDL_Rect{
+        .y = y,
+        .x = x,
+        .w = w,
+        .h = h,
+    };
+    render_a_block(img_name, pos);
+}
+
+void SpriteHandler::render_a_block(std::string img_name, SDL_Rect& pos) {
+    SDL_RenderCopy(surface_, imgs_texture_[img_name], NULL, &pos);
+}
+
 void SpriteHandler::draw_background() {
     for (auto& it : current_level_->get_backgrounds()) {
-        SDL_Rect pos = SDL_Rect{
-            .y = std::get<0>(it.first) * BLOCK_SIZE - BLOCK_SIZE / 2, // Offset 0.5 block
-            .x = std::get<1>(it.first) * BLOCK_SIZE,
-            .w = BLOCK_SIZE,
-            .h = BLOCK_SIZE,
-        };
-        SDL_RenderCopy(surface_, imgs_texture_[it.second], NULL, &pos);
+        draw_a_block(it.second,
+            std::get<1>(it.first) * BLOCK_SIZE - BLOCK_SIZE / 2, // Offset 0.5 block
+            std::get<0>(it.first) * BLOCK_SIZE);
     }
 }
 
