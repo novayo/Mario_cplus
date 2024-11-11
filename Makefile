@@ -16,6 +16,7 @@ TARGET = main.out
 # 		Testing files named ".*._test.cc"
 # 		Examples folder
 SRC = $(shell find . -name "*.cc" | grep -v "*_test.cc" | grep -v "examples\/")
+HEADERS = $(shell find . -name "*.h")
 
 all: format $(TARGET)
 
@@ -28,6 +29,7 @@ run: $(TARGET)
 
 format:
 	clang-format -i $(SRC)
+	clang-format -i $(HEADERS)
 
 clean:
 	find . -name "*.out" -delete
