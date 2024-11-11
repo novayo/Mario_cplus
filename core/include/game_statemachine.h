@@ -1,10 +1,10 @@
 #pragma once
 
-#include "utils/statemachine.h"
 #include "utils/state.h"
+#include "utils/statemachine.h"
 
 class GameSM : public StateMachine {
-public:
+   public:
     GameSM();
 
     void start() override {
@@ -12,12 +12,10 @@ public:
         getState()->enter();
     }
 
-    void process() const override {
-        StateMachine::process();
-    }
+    void process() const override { StateMachine::process(); }
 
     class Init : public State {
-    public:
+       public:
         Init() {};
         Init(StateMachine* sm) : State("Init", sm) {};
         void enter() override;
@@ -26,7 +24,7 @@ public:
     };
 
     class Login : public State {
-    public:
+       public:
         Login() {};
         Login(StateMachine* sm) : State("Login", sm) {};
         void enter() override;
@@ -35,7 +33,7 @@ public:
     };
 
     class Loading : public State {
-    public:
+       public:
         Loading() {};
         Loading(StateMachine* sm) : State("Loading", sm) {};
         void enter() override;
@@ -44,7 +42,7 @@ public:
     };
 
     class GameStart : public State {
-    public:
+       public:
         GameStart() {};
         GameStart(StateMachine* sm) : State("GameStart", sm) {};
         void enter() override;
@@ -53,7 +51,7 @@ public:
     };
 
     class GameWin : public State {
-    public:
+       public:
         GameWin() {};
         GameWin(StateMachine* sm) : State("GameWin", sm) {};
         void enter() override;
@@ -62,7 +60,7 @@ public:
     };
 
     class GameLose : public State {
-    public:
+       public:
         GameLose() {};
         GameLose(StateMachine* sm) : State("GameLose", sm) {};
         void enter() override;
@@ -71,7 +69,7 @@ public:
     };
 
     class GameOver : public State {
-    public:
+       public:
         GameOver() {};
         GameOver(StateMachine* sm) : State("GameOver", sm) {};
         void enter() override;

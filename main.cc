@@ -67,7 +67,7 @@ int main(int argc, char* argv[]) {
 
         game_sm.process();
 
-        cv.notify_all();  // Notify update_thread to process.
+        cv.notify_all(); // Notify update_thread to process.
     }
 
     // Teardown threads

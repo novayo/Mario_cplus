@@ -1,34 +1,27 @@
 #pragma once
 
 #include <unordered_set>
+
 #include "utils/interface_state.h"
 
 class StateMachine {
-public:
-    StateMachine(){};
-    std::unordered_set<int> key_input {};  // TODO: optimize
+   public:
+    StateMachine() {};
+    std::unordered_set<int> key_input{}; // TODO: optimize
 
     virtual void start() {
         printf("StateMachine: start\n");
         mState_->enter();
     }
 
-    virtual void process() const {
-        mState_->process();
-    }
+    virtual void process() const { mState_->process(); }
 
-    void setInitState(IState* initState) {
-        mState_ = initState;
-    }
+    void setInitState(IState* initState) { mState_ = initState; }
 
-    void setState(IState* destState) {
-        mState_ = destState;
-    }
+    void setState(IState* destState) { mState_ = destState; }
 
-    IState* getState() {
-        return mState_;
-    }
+    IState* getState() { return mState_; }
 
-private:
+   private:
     IState* mState_;
 };

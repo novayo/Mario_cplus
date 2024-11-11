@@ -1,7 +1,8 @@
-#include "core/include/constants.h"
 #include "core/include/sdl_handler.h"
 
 #include <stdio.h>
+
+#include "core/include/constants.h"
 
 sdl_handler::SDLHandler& sdl_handler::GetInstance() {
     static SDLHandler sdl_handler_;
@@ -18,8 +19,8 @@ void sdl_handler::SDLHandler::initialize() {
     printf("Creating window...\n");
     window_ = SDL_CreateWindow("GAME", // creates a window
                                SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                               SCREEN_COL_BLOCKS_NUM * BLOCK_SIZE,  // Width
-                               SCREEN_ROW_BLOCKS_NUM * BLOCK_SIZE,  // Height
+                               SCREEN_COL_BLOCKS_NUM * BLOCK_SIZE, // Width
+                               SCREEN_ROW_BLOCKS_NUM * BLOCK_SIZE, // Height
                                SDL_WINDOW_SHOWN);
     if (!window_) {
         printf("error creating window: %s\n", SDL_GetError());

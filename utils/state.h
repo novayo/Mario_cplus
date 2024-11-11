@@ -1,11 +1,12 @@
 #pragma once
 
-#include "utils/statemachine.h"
-#include "utils/interface_state.h"
 #include <string>
 
+#include "utils/interface_state.h"
+#include "utils/statemachine.h"
+
 class State : public IState {
-public:
+   public:
     State() {};
     State(std::string name, StateMachine* sm) : IState(name), sm_(sm) {};
 
@@ -27,6 +28,6 @@ public:
         return ret;
     }
 
-private:
+   private:
     StateMachine* sm_;
 };

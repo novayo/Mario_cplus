@@ -1,8 +1,9 @@
+#include "core/include/sprite_handler.h"
+
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 
 #include "core/include/sdl_handler.h"
-#include "core/include/sprite_handler.h"
 #include "level/level_1_1.h"
 
 using namespace sprite_handler;
@@ -13,10 +14,10 @@ sprite_handler::SpriteHandler& sprite_handler::GetInstance() {
 }
 
 void SpriteHandler::initialize() {
-    font_texture_ = IMG_LoadTexture(surface_, (root_path_+"font.png").c_str());
-    for (int i=0; i<std::size(FONT_ARRAY); i++) {
+    font_texture_ = IMG_LoadTexture(surface_, (root_path_ + "font.png").c_str());
+    for (int i = 0; i < std::size(FONT_ARRAY); i++) {
         fonts_attribute_[FONT_ARRAY[i]] = SDL_Rect{
-            .x = FONT_IMAGE_SIZE*i,
+            .x = FONT_IMAGE_SIZE * i,
             .y = 0,
             .w = FONT_IMAGE_SIZE,
             .h = FONT_IMAGE_SIZE,
@@ -43,7 +44,7 @@ void SpriteHandler::load_level(int num_level) {
     delete current_level_;
 
     switch (num_level) {
-        case 11:  // 1-1
+        case 11: // 1-1
             current_level_ = new Level_1_1();
             break;
         default:
@@ -57,7 +58,7 @@ void SpriteHandler::load_level(int num_level) {
 void SpriteHandler::draw_background() {
     for (auto& it : current_level_->get_backgrounds()) {
         SDL_Rect pos = SDL_Rect{
-            .y = std::get<0>(it.first) * BLOCK_SIZE - BLOCK_SIZE / 2,  // Offset 0.5 block
+            .y = std::get<0>(it.first) * BLOCK_SIZE - BLOCK_SIZE / 2, // Offset 0.5 block
             .x = std::get<1>(it.first) * BLOCK_SIZE,
             .w = BLOCK_SIZE,
             .h = BLOCK_SIZE,
@@ -81,13 +82,12 @@ void SpriteHandler::teardown() {
     current_level_ = NULL;
 }
 
-void SpriteHandler::set_root_path(std::string path) {
-    root_path_ = path;
-}
+void SpriteHandler::set_root_path(std::string path) { root_path_ = path; }
 
 void SpriteHandler::set_background_color_() {
     COLOR bg_color = current_level_->get_background_color();
-    sdl_handler::GetInstance().set_background_color(std::get<0>(bg_color), std::get<1>(bg_color), std::get<2>(bg_color));
+    sdl_handler::GetInstance().set_background_color(std::get<0>(bg_color), std::get<1>(bg_color),
+                                                    std::get<2>(bg_color));
 }
 
 void SpriteHandler::load_images_() {
@@ -96,7 +96,7 @@ void SpriteHandler::load_images_() {
         if (is_img_loaded_(img_name)) {
             continue;
         }
-        imgs_texture_[img_name] = IMG_LoadTexture(surface_, (root_path_+img_name).c_str());
+        imgs_texture_[img_name] = IMG_LoadTexture(surface_, (root_path_ + img_name).c_str());
     }
 }
 

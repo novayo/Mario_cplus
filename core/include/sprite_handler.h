@@ -1,7 +1,8 @@
 #pragma once
 
-#include <string>
 #include <SDL2/SDL.h>
+
+#include <string>
 #include <unordered_map>
 
 #include "core/include/constants.h"
@@ -11,15 +12,16 @@
 namespace sprite_handler {
 
 class SpriteHandler {
-public:
+   public:
     void initialize();
-    void set_text(std::string text, int x, int y, int font_size = FONT_SIZE, int r = 255, int g = 255, int b = 255);
+    void set_text(std::string text, int x, int y, int font_size = FONT_SIZE, int r = 255,
+                  int g = 255, int b = 255);
     void load_level(int num_game);
-    void draw_background();  // TODO(shiheric): some block could change.
+    void draw_background(); // TODO(shiheric): some block could change.
     void teardown();
     void set_root_path(std::string path);
 
-private:
+   private:
     bool is_img_loaded_(std::string);
     void load_images_();
     void set_background_color_();
@@ -33,4 +35,4 @@ private:
 
 SpriteHandler& GetInstance();
 
-}  // namespace sprite_handler
+} // namespace sprite_handler
