@@ -1,5 +1,6 @@
-#include "core/include/constants.h"
 #include "core/include/game_statemachine.h"
+
+#include "core/include/constants.h"
 #include "core/include/sdl_handler.h"
 #include "core/include/sprite_handler.h"
 
@@ -52,7 +53,7 @@ void GameSM::Login::process() {
         sprite_handler::GetInstance().set_text(FONT_ARRAY[i], 32 * (i-30), 64);
     }
 
-    if (getInput(0)) { // TODO: 0 == space
+    if (getInput(MARIO_CONTROL::JUMP)) {
         transitionTo(&mLoadingState_);
     }
 }
@@ -68,7 +69,7 @@ void GameSM::Loading::process() {
     printf("GameState: Enter %s\n", getName());
     printf("\t Showing Loading Scene\n");
     printf("\t ===== Enter Space ===== \n");
-    if (getInput(0)) { // TODO: 0 == space
+    if (getInput(MARIO_CONTROL::JUMP)) {
         transitionTo(&mGameStartState_);
     }
 }
@@ -87,13 +88,13 @@ void GameSM::GameStart::process() {
     printf("GameState: Process %s\n", getName());
     printf("\t Playing game\n");
     printf("\t ===== Enter Space: Win ===== \n");
-    printf("\t ===== Enter a: Lose ===== \n");
-    printf("\t ===== Enter b: Over ===== \n");
-    if (getInput(0)) { // TODO: 0 == space
+    printf("\t ===== Enter Z: Lose ===== \n");
+    printf("\t ===== Enter X: Over ===== \n");
+    if (getInput(MARIO_CONTROL::JUMP)) {
         transitionTo(&mGameWinState_);
-    } else if (getInput(1)) { // TODO: 1 == a
+    } else if (getInput(MARIO_CONTROL::ACCELERATE)) {
         transitionTo(&mGameLoseState_);
-    } else if (getInput(2)) { // TODO: 2 == b
+    } else if (getInput(MARIO_CONTROL::FIRE)) {
         transitionTo(&mGameOverState_);
     }
 }
@@ -109,7 +110,7 @@ void GameSM::GameWin::process() {
     printf("GameState: Process %s\n", getName());
     printf("\t Render Game Win Animation + Play sound effects\n");
     printf("\t ===== Enter Space ===== \n");
-    if (getInput(0)) { // TODO: 0 == space
+    if (getInput(MARIO_CONTROL::JUMP)) {
         transitionTo(&mLoadingState_);
     }
 }
@@ -125,7 +126,7 @@ void GameSM::GameLose::process() {
     printf("GameState: Process %s\n", getName());
     printf("\t Lose Animation + Play sound effects\n");
     printf("\t ===== Enter Space ===== \n");
-    if (getInput(0)) { // TODO: 0 == space
+    if (getInput(MARIO_CONTROL::JUMP)) {
         transitionTo(&mLoadingState_);
     }
 }
@@ -138,7 +139,7 @@ void GameSM::GameOver::process() {
     printf("GameState: Process %s\n", getName());
     printf("\t No live. Ready to back to Login screen\n");
     printf("\t ===== Enter Space ===== \n");
-    if (getInput(0)) { // TODO: 0 == space
+    if (getInput(MARIO_CONTROL::JUMP)) {
         transitionTo(&mLoginState_);
     }
 }
