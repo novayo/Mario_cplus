@@ -17,6 +17,8 @@ class SpriteHandler {
     void set_text(std::string text, int x, int y, int font_size = FONT_SIZE, int r = 255,
                   int g = 255, int b = 255);
     void load_level(int num_game);
+    void draw_a_block(std::string img_name, int x, int y, int w=BLOCK_SIZE, int h=BLOCK_SIZE);
+    void render_a_block(std::string img_name, SDL_Rect& pos);
     void draw_background(); // TODO(shiheric): some block could change.
     void teardown();
     void set_root_path(std::string path);
