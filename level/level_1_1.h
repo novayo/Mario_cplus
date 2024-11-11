@@ -5,7 +5,7 @@
 #include "level/base_level.h"
 
 class Level_1_1 : public BaseLevel {
-public:
+   public:
     void play_background_music() override;
     void stop_background_music() override;
     COLOR get_background_color() override;
@@ -21,7 +21,7 @@ void Level_1_1::stop_background_music() {
 }
 
 COLOR Level_1_1::get_background_color() {
-    return COLOR(111, 130, 245);  // Light blue for the sky.
+    return COLOR(111, 130, 245); // Light blue for the sky.
 }
 
 const std::map<POS, std::string> Level_1_1::get_backgrounds() {

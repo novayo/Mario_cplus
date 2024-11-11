@@ -46,11 +46,11 @@ void GameSM::Login::process() {
     sprite_handler::GetInstance().draw_background();
 
     // [TEST] Show text
-    for (int i=0; i<30; i++) {
+    for (int i = 0; i < 30; i++) {
         sprite_handler::GetInstance().set_text(FONT_ARRAY[i], 32 * i, 32, 32, 255, 0, 0);
     }
-    for (int i=30; i<std::size(FONT_ARRAY); i++) {
-        sprite_handler::GetInstance().set_text(FONT_ARRAY[i], 32 * (i-30), 64);
+    for (int i = 30; i < std::size(FONT_ARRAY); i++) {
+        sprite_handler::GetInstance().set_text(FONT_ARRAY[i], 32 * (i - 30), 64);
     }
 
     if (getInput(MARIO_CONTROL::JUMP)) {

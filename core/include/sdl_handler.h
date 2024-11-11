@@ -5,7 +5,7 @@
 namespace sdl_handler {
 
 class SDLHandler {
-public:
+   public:
     void initialize();
     void teardown();
     SDL_Renderer* get_surface();
@@ -13,10 +13,10 @@ public:
     void update_screen();
     void set_background_color(uint8_t r, uint8_t g, uint8_t b);
 
-private:
+   private:
     SDL_Renderer* surface_;
     SDL_Window* window_;
-    uint8_t bg_color_[3] = {0, 0, 0};  // Default black
+    uint8_t bg_color_[3] = {0, 0, 0}; // Default black
 };
 
 SDLHandler& GetInstance();
